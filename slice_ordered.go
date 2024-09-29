@@ -100,7 +100,7 @@ func (stream SliceOrderedStream[E]) Map(mapper func(E) E) SliceOrderedStream[E] 
 }
 
 // SortFunc See: SliceStream.SortFunc
-func (stream SliceOrderedStream[E]) SortFunc(less func(a, b E) bool) SliceOrderedStream[E] {
+func (stream SliceOrderedStream[E]) SortFunc(less func(a, b E) int) SliceOrderedStream[E] {
 	stream.SliceStream = stream.SliceStream.SortFunc(less)
 	return stream
 }

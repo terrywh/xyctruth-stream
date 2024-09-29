@@ -169,7 +169,7 @@ func (stream SliceStream[E]) Delete(i, j int) SliceStream[E] {
 // Compare according to the less function
 // - less: return a > b
 // If the source is empty or nil then true is returned.
-func (stream SliceStream[E]) IsSortedFunc(less func(a, b E) bool) bool {
+func (stream SliceStream[E]) IsSortedFunc(less func(a, b E) int) bool {
 	stream.evaluation()
 	return slices.IsSortedFunc(stream.source, less)
 }
@@ -244,7 +244,7 @@ func (stream SliceStream[E]) Reduce(result E, accumulator func(result E, elem E)
 
 // SortFunc Returns a sorted stream consisting of the elements of this stream.
 // Sorted according to slices.SortFunc.
-func (stream SliceStream[E]) SortFunc(less func(a, b E) bool) SliceStream[E] {
+func (stream SliceStream[E]) SortFunc(less func(a, b E) int) SliceStream[E] {
 	stream.evaluation()
 	slices.SortFunc(stream.source, less)
 	return stream
